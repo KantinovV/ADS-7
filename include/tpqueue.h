@@ -86,10 +86,10 @@ void TPQueue<T>::push(const T& val) {
     while (tmp != head && tmp->data.prior < val.prior) {
       tmp = tmp->prv;
     }
-    if (temp->data.prior > val.prior) {
+    if (tmp->data.prior > val.prior) {
       Item* cell = new Item;
-      cell->nxt = temp->nxt;
-      cell->prv = temp;
+      cell->nxt = tmp->nxt;
+      cell->prv = tmp;
       cell->data = val;
       temp->nxt->prv = cell;
       temp->nxt = cell;
@@ -97,7 +97,7 @@ void TPQueue<T>::push(const T& val) {
     if (tmp == head && tmp->data.prior < val.prior) {
       head->prv = create(val);
       head = head->prv;
-      head->nxt = temp;
+      head->nxt = tmp;
     }
   }
 }
