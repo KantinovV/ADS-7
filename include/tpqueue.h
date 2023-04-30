@@ -11,7 +11,7 @@ class TPQueue {
   TPQueue() : head(nullptr), tail(nullptr) { }
   ~TPQueue();
   void push(const T&);
-  T& pop();
+  T pop();
   void print();
 
  private:
@@ -52,7 +52,7 @@ typename TPQueue<T>::Item* TPQueue<T>::create(const T& data) {
 }
 
 template <typename T>
-T& TPQueue<T>::pop() {
+T TPQueue<T>::pop() {
   if (!head) {
     throw std::string("Empty!");
   } else {
@@ -91,8 +91,8 @@ void TPQueue<T>::push(const T& val) {
       cell->nxt = tmp->nxt;
       cell->prv = tmp;
       cell->data = val;
-      temp->nxt->prv = cell;
-      temp->nxt = cell;
+      tmp->nxt->prv = cell;
+      tmp->nxt = cell;
     }
     if (tmp == head && tmp->data.prior < val.prior) {
       head->prv = create(val);
